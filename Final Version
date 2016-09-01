@@ -182,8 +182,7 @@ public class FracCalc {
     //Prints a message just before program terminates
     public static void cleanup() {
     
-    	System.out.println("Thanks for using FracCalc! Be sure to "
-    			+ "give the student who made this a great grade!");
+    	System.out.println("Thanks for using FracCalc!");
     }
     
 
