@@ -1,15 +1,15 @@
 import java.util.*;
-import java.util.regex.Pattern;
+
 public class FracCalc {
 
 	public static String operation;
-	
-    public static void main(String[] args) 
+
+    public static void main(String[] args)
     {
         // TODO: Read the input from the user and call produceAnswer with an equation
     	//Initialize prints a welcome message once the program starts
     	Initialize();
-    	
+
     	//Invokes a scanner to determine system input
     	Scanner console = new Scanner(System.in);
     	System.out.print("Type your expression or type quit to exit: ");
@@ -25,17 +25,17 @@ public class FracCalc {
     	console.close();
     	cleanup();
     }
-    
+
     // ** IMPORTANT ** DO NOT DELETE THIS FUNCTION.  This function will be used to test your code
     // This function takes a String 'input' and produces the result
     //
     // input is a fraction string that needs to be evaluated.  For your program, this will be the user input.
     //      e.g. input ==> "1/2 + 3/4"
-    //        
+    //
     // The function should return the result of the fraction after it has been calculated
     //      e.g. return ==> "1_1/4"
     public static String produceAnswer(final String input) {
-    	
+
     	/* We create a scanner in order to scan and store the three separate tokens
     	 * that exist in the user input
     	 */
@@ -43,7 +43,7 @@ public class FracCalc {
     	final String Frac1 = decoder.next();
     	operation = decoder.next();
     	final String Frac2 = decoder.next();
-    	
+
     	//We interpret the two terms as an array.
     	int[] Fraction1 = interpretTerm(Frac1);
     	int[] Fraction2 = interpretTerm(Frac2);
@@ -67,9 +67,9 @@ public class FracCalc {
         decoder.close();
     	return Statement;
     }
-    
+
     //Helper methods below
-    
+
 	public static int[] interpretTerm(String string) {
 		//Since we only care about the numbers, I used a delimiter to extract them.
 		Scanner Numbers = new Scanner(string).useDelimiter("[^0-9]");
@@ -95,7 +95,7 @@ public class FracCalc {
 		else {
 			whole = Integer.parseInt(Numbers.next());
 		}
-		
+
 		/* Using the parsed values, we can now create an array with the parts
 		* of our mixed numeral
 		*/
@@ -105,47 +105,47 @@ public class FracCalc {
 		Fraction [2] = den;
 		Numbers.close();
 		return Fraction;
-		
-		
+
+
 	}
-	
+
 	//Handles all operations. This method returns an improper fraction answer in array form
 	public static int[] produceResultFrac(int[] a, int[] b) {
 		int totalNum = 0;
 		int totalDen = 0;
 		int numerator1 = a[0]*a[2] + a[1];
 		int numerator2 = b[0]*b[2] + b[1];
-		
+
 		//If the operation is addition
 		if(operation.equals("+")) {
-			
+
 			totalNum = numerator1*b[2] + numerator2*a[2];
 			totalDen = a[2]*b[2];
-			
+
 		}
 		//If the operation is subtraction
 		else if(operation.equals("-")) {
-			
+
 			totalNum = numerator1*b[2] - numerator2*a[2];
 			totalDen = a[2]*b[2];
 		}
 		//If the operation is multiplication
 		else if(operation.equals("*")) {
-			
+
 			totalNum = numerator1*numerator2;
 			totalDen = a[2]*b[2];
 		}
 		//If the operation is division
 		else if(operation.equals("/")) {
-			
+
 			totalNum = numerator1*b[2];
 			totalDen = numerator2*a[2];
 		}
-		
+
 		int Factor = gcd(totalNum,totalDen);
 		totalNum = totalNum/Factor;
 		totalDen = totalDen/Factor;
-		
+
 		int totalWhole = totalNum/totalDen;
 		totalNum = totalNum % totalDen;
 		//Places the results in an array
@@ -155,7 +155,7 @@ public class FracCalc {
 		finalValue[2] = totalDen;
 		return finalValue;
 	}
-	
+
 	public static int gcd(int a, int b)
 	{
 	    while (b > 0)
@@ -166,11 +166,11 @@ public class FracCalc {
 	    }
 	    return a;
 	}
-   
-    
+
+
 	//Prints a welcome message along with an important warning.
     public static void Initialize() {
-    	
+
     	System.out.println("Welcome to FracCalc! If you need to calculate expressions with "
     			+ "mixed numerals, you've come to the right place! ");
     	System.out.println("WARNING! This program was written under the assumption that all inputs"
@@ -178,12 +178,12 @@ public class FracCalc {
     			+ "\n terms and operations as stated in the FracCalc directions. Failure to do so will cause"
     			+ "\n exceptions to be thrown as the scanner will be expecting three different tokens as opposed to one.");
     }
-    
+
     //Prints a message just before program terminates
     public static void cleanup() {
-    
+
     	System.out.println("Thanks for using FracCalc!");
     }
-    
+
 
 }
