@@ -12,10 +12,10 @@ public class Fraction {
 
     /**
      * Public constructor
-     * 
+     *
      * @param w The whole part of this fraction
      * @param n The numerator of this fraction
-     * @param d The denominator
+     * @param d The denominator of this fraction
      */
     public Fraction(int w, int n, int d) {
 
@@ -24,18 +24,34 @@ public class Fraction {
         setdenominator(d);
     }
 
+    /**
+     *
+     * @return an int representing the whole part of this fraction
+     */
     public int getWhole() {
         return whole;
     }
 
+    /**
+     *
+     * @return an int representing the numerator of this fraction
+     */
     public int getNumerator() {
         return numerator;
     }
 
+    /**
+     *
+     * @return an int representing the denominator of this fraction
+     */
     public int getdenominator() {
         return denominator;
     }
 
+    /**
+     *
+     * @param d the new value of the denominator
+     */
     public void setdenominator(int d) {
 
         if (d != 0) {
