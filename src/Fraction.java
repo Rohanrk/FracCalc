@@ -2,19 +2,26 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * Created by rohan on 11/6/16.
+ * @author Rohan Rk
  */
 public class Fraction {
 
     private int whole;
     private int numerator;
-    private int denomonator;
+    private int denominator;
 
+    /**
+     * Public constructor
+     * 
+     * @param w The whole part of this fraction
+     * @param n The numerator of this fraction
+     * @param d The denominator
+     */
     public Fraction(int w, int n, int d) {
 
         whole = w;
         numerator = n;
-        setDenomonator(d);
+        setdenominator(d);
     }
 
     public int getWhole() {
@@ -25,24 +32,24 @@ public class Fraction {
         return numerator;
     }
 
-    public int getDenomonator() {
-        return denomonator;
+    public int getdenominator() {
+        return denominator;
     }
 
-    public void setDenomonator(int d) {
+    public void setdenominator(int d) {
 
         if (d != 0) {
-            denomonator = d;
+            denominator = d;
         } else {
-            throw new InputMismatchException("Denomonator cannot be 0");
+            throw new InputMismatchException("denominator cannot be 0");
         }
     }
 
     public void simplify() {
 
-        int factor = gcd(Math.abs(numerator), denomonator);
+        int factor = gcd(Math.abs(numerator), denominator);
         numerator = numerator/factor;
-        denomonator = denomonator/factor;
+        denominator = denominator/factor;
     }
 
     public void negate() {
@@ -65,29 +72,29 @@ public class Fraction {
 
         this.convertImproperFraction();
         int temp = numerator;
-        numerator = denomonator;
-        denomonator = numerator;
+        numerator = denominator;
+        denominator = numerator;
     }
 
     public void convertMixedNumeral() {
 
         if (whole == 0) {
-            whole = numerator/denomonator;
-            numerator = numerator % denomonator;
+            whole = numerator/denominator;
+            numerator = numerator % denominator;
         }
     }
 
     public void convertImproperFraction() {
 
         if (whole != 0) {
-            numerator = whole * denomonator + numerator;
+            numerator = whole * denominator + numerator;
             whole = 0;
         }
     }
 
     @Override
     public String toString() {
-        return String.format("%d_%d/%d", whole, Math.abs(numerator), denomonator);
+        return String.format("%d_%d/%d", whole, Math.abs(numerator), denominator);
     }
 
     public static Fraction parseFraction(String string) {
@@ -122,8 +129,8 @@ public class Fraction {
 
         a.convertImproperFraction();
         b.convertImproperFraction();
-        int newNum = (a.numerator * b.denomonator) + (b.numerator * a.denomonator);
-        int newDen = a.denomonator * b.denomonator;
+        int newNum = (a.numerator * b.denominator) + (b.numerator * a.denominator);
+        int newDen = a.denominator * b.denominator;
         Fraction result = new Fraction(0, newNum, newDen);
         result.simplify();
         result.convertMixedNumeral();
@@ -135,7 +142,7 @@ public class Fraction {
         a.convertImproperFraction();
         b.convertImproperFraction();
         int newNum = a.numerator * b.numerator;
-        int newDen = a.denomonator * b.denomonator;
+        int newDen = a.denominator * b.denominator;
         Fraction result = new Fraction(0, newNum, newDen);
         result.simplify();
         result.convertMixedNumeral();

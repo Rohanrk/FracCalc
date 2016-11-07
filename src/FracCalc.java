@@ -2,6 +2,9 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
+/**
+ * @author Rohan Rk
+ */
 public class FracCalc {
 
     private static String operation;
