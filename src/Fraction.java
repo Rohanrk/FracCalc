@@ -2,9 +2,11 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
+ * Represents a Fraction
+ *
  * @author Rohan Rk
  */
-public class Fraction {
+class Fraction {
 
     private int whole;
     private int numerator;
@@ -25,7 +27,6 @@ public class Fraction {
     }
 
     /**
-     *
      * @return an int representing the whole part of this fraction
      */
     public int getWhole() {
@@ -33,7 +34,6 @@ public class Fraction {
     }
 
     /**
-     *
      * @return an int representing the numerator of this fraction
      */
     public int getNumerator() {
@@ -41,7 +41,6 @@ public class Fraction {
     }
 
     /**
-     *
      * @return an int representing the denominator of this fraction
      */
     public int getdenominator() {
@@ -49,6 +48,7 @@ public class Fraction {
     }
 
     /**
+     * Sets the denominator of this Fraction
      *
      * @param d the new value of the denominator
      */
@@ -61,19 +61,31 @@ public class Fraction {
         }
     }
 
-    public void simplify() {
+    /**
+     * Simplifies the Fraction to simplest form
+     */
+    private void simplify() {
 
         int factor = gcd(Math.abs(numerator), denominator);
         numerator = numerator/factor;
         denominator = denominator/factor;
     }
 
+    /**
+     *
+     */
     public void negate() {
 
         whole = whole * -1;
         numerator = numerator * -1;
     }
 
+    /**
+     *
+     * @param a
+     * @param b
+     * @return greatest common factor of parameters
+     */
     public int gcd(int a, int b) {
         while (b > 0) {
 
@@ -84,6 +96,9 @@ public class Fraction {
         return a;
     }
 
+    /**
+     * Reciprocates this Fraction
+     */
     public void reciprocateFraction() {
 
         this.convertImproperFraction();
@@ -92,6 +107,9 @@ public class Fraction {
         denominator = numerator;
     }
 
+    /**
+     * Converts this fraction to mixed numeral form
+     */
     public void convertMixedNumeral() {
 
         if (whole == 0) {
@@ -100,6 +118,9 @@ public class Fraction {
         }
     }
 
+    /**
+     * Converts this fraction to improper form
+     */
     public void convertImproperFraction() {
 
         if (whole != 0) {
@@ -113,6 +134,11 @@ public class Fraction {
         return String.format("%d_%d/%d", whole, Math.abs(numerator), denominator);
     }
 
+    /**
+     *
+     * @param string that represents a Fraction
+     * @return a Fraction representation of the parameter
+     */
     public static Fraction parseFraction(String string) {
 
         Scanner Numbers = new Scanner(string).useDelimiter("[^0-9]");
@@ -141,6 +167,12 @@ public class Fraction {
 
     }
 
+    /**
+     *
+     * @param a
+     * @param b
+     * @return sum of a and b
+     */
     public static Fraction addFractions(Fraction a, Fraction b) {
 
         a.convertImproperFraction();
@@ -153,6 +185,12 @@ public class Fraction {
         return result;
     }
 
+    /**
+     *
+     * @param a
+     * @param b
+     * @return product of a and b
+     */
     public static Fraction multiplyFractions(Fraction a, Fraction b) {
 
         a.convertImproperFraction();

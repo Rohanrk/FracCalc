@@ -5,7 +5,7 @@ import java.util.InputMismatchException;
 /**
  * @author Rohan Rk
  */
-public class FracCalc {
+class FracCalc {
 
     private static String operation;
 
@@ -66,11 +66,10 @@ public class FracCalc {
                 System.out.println(answer);
             } catch(InputMismatchException e) {
                 System.out.println("You cannot have a denomonator of 0\n");
-            } catch(NoSuchElementException e) {
-                System.out.println("Your expression was invalid. Try again!\n");
-            } catch(NumberFormatException e) {
+            } catch(NoSuchElementException|NumberFormatException e) {
                 System.out.println("Your expression was invalid. Try again!\n");
             }
+
             System.out.print("Type your expression or type quit to exit: ");
             input = console.nextLine();
         }
